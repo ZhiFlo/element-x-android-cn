@@ -7,6 +7,7 @@
 import config.BuildTimeConfig
 import extension.buildConfigFieldStr
 import extension.setupDependencyInjection
+import extension.testCommonDependencies
 
 plugins {
     id("io.element.android-library")
