@@ -1,0 +1,2 @@
+-keep class com.hihonor.push.** { *; }
+-keep class com.huawei.hms.** { *; }

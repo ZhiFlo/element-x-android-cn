@@ -1,2 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest />
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <queries>
+        <intent>
+            <action android:name="com.huawei.hms.core.aidlservice" />
+        </intent>
+        <intent>
+            <action android:name="com.hihonor.push.action.BIND_PUSH_SERVICE" />
+        </intent>
+    </queries>
+
+    <application>
+        <meta-data
+            android:name="com.huawei.hms.client.appid"
+            android:value="appid=${chinaPushHuaweiAppId}" />
+        <meta-data
+            android:name="push_kit_auto_init_enabled"
+            android:value="true" />
+        <meta-data
+            android:name="com.hihonor.push.app_id"
+            android:value="${chinaPushHonorAppId}" />
+
+        <service
+            android:name=".huawei.ElementHuaweiMessageService"
+            android:directBootAware="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.huawei.push.action.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <service
+            android:name=".honor.ElementHonorMessageService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.hihonor.push.action.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+    </application>
+</manifest>

@@ -37,6 +37,18 @@ dependencyResolutionManagement {
                 includeModule("com.github.jmartinesp", "konsist")
             }
         }
+        maven {
+            url = uri("https://developer.huawei.com/repo/")
+            content {
+                includeGroupByRegex("com\\.huawei\\..*")
+            }
+        }
+        maven {
+            url = uri("https://developer.honor.com/repo/")
+            content {
+                includeGroupByRegex("com\\.hihonor\\..*")
+            }
+        }
         // Check for official Android-related packages only in Google's maven repo
         exclusiveContent {
             forRepository {
