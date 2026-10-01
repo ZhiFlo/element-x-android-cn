@@ -1,0 +1,2 @@
+-keep class com.xiaomi.mipush.sdk.** { *; }
+-keep class com.xiaomi.push.** { *; }
