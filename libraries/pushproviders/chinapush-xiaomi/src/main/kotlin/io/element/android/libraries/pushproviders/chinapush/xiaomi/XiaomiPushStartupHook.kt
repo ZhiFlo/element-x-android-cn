@@ -12,10 +12,13 @@ import com.xiaomi.mipush.sdk.MiPushClient
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesIntoSet
 import io.element.android.features.enterprise.api.AppStartupHook
+import io.element.android.libraries.pushproviders.chinapush.ChinaPushTokenHandler
 import timber.log.Timber
 
 @ContributesIntoSet(AppScope::class)
-class XiaomiPushStartupHook : AppStartupHook {
+class XiaomiPushStartupHook(
+    private val tokenHandler: ChinaPushTokenHandler,
+) : AppStartupHook {
     override suspend fun onAppStartup(activity: Activity) {
         if (BuildConfig.XIAOMI_APP_ID.isBlank() || BuildConfig.XIAOMI_APP_KEY.isBlank()) {
             return
@@ -30,8 +33,13 @@ class XiaomiPushStartupHook : AppStartupHook {
                 BuildConfig.XIAOMI_APP_ID,
                 BuildConfig.XIAOMI_APP_KEY,
             )
+            MiPushClient.getRegId(activity.applicationContext)
         }.onFailure {
             Timber.w(it, "Unable to initialize Xiaomi Push")
+        }.onSuccess { existingToken ->
+            if (existingToken.isNotBlank()) {
+                tokenHandler.handle(PROVIDER, existingToken)
+            }
         }
     }
 
