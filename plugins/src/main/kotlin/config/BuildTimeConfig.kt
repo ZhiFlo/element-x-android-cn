@@ -31,6 +31,8 @@ object BuildTimeConfig {
     val BUG_REPORT_APP_NAME: String? = null
     const val PUSH_CONFIG_INCLUDE_FIREBASE: Boolean = true
     const val PUSH_CONFIG_INCLUDE_UNIFIED_PUSH: Boolean = true
+    const val PUSH_CONFIG_INCLUDE_CHINA_PUSH: Boolean = true
+    const val PUSH_CONFIG_CHINA_GATEWAY_URL: String = "https://push.zhiflo.com/_matrix/push/v1/notify"
     val PUSHER_APP_ID_RELEASE: String? = null
     val PUSHER_APP_ID_DEBUG: String? = null
     val PUSHER_APP_ID_NIGHTLY: String? = null

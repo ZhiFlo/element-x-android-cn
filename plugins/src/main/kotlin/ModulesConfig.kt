@@ -14,6 +14,7 @@ object ModulesConfig {
     val pushProvidersConfig = PushProvidersConfig(
         includeFirebase = BuildTimeConfig.PUSH_CONFIG_INCLUDE_FIREBASE,
         includeUnifiedPush = BuildTimeConfig.PUSH_CONFIG_INCLUDE_UNIFIED_PUSH,
+        includeChinaPush = BuildTimeConfig.PUSH_CONFIG_INCLUDE_CHINA_PUSH,
     )
 
     val analyticsConfig: AnalyticsConfig = if (isEnterpriseBuild) {
