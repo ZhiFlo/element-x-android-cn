@@ -299,6 +299,20 @@ dependencies {
     if (ModulesConfig.pushProvidersConfig.includeChinaPush && includeChinaPushXiaomi) {
         implementation(project(":libraries:pushproviders:chinapush-xiaomi"))
     }
+    val includeChinaPushOppo = providers.gradleProperty("chinapush.oppo.enabled")
+        .orElse(providers.environmentVariable("CHINA_PUSH_OPPO_ENABLED"))
+        .map(String::toBoolean)
+        .getOrElse(false)
+    if (ModulesConfig.pushProvidersConfig.includeChinaPush && includeChinaPushOppo) {
+        implementation(project(":libraries:pushproviders:chinapush-oppo"))
+    }
+    val includeChinaPushVivo = providers.gradleProperty("chinapush.vivo.enabled")
+        .orElse(providers.environmentVariable("CHINA_PUSH_VIVO_ENABLED"))
+        .map(String::toBoolean)
+        .getOrElse(false)
+    if (ModulesConfig.pushProvidersConfig.includeChinaPush && includeChinaPushVivo) {
+        implementation(project(":libraries:pushproviders:chinapush-vivo"))
+    }
 
     // Google Play Services fused location backend. Discovered at runtime via ServiceLoader by the
     // location feature.
