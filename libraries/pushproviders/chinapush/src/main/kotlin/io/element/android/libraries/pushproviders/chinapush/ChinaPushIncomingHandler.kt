@@ -38,7 +38,9 @@ class DefaultChinaPushIncomingHandler(
         if (pushData == null) {
             pushHandler.handleInvalid(
                 providerInfo = provider,
-                data = payload.entries.joinToString("\n") { "${it.key}: ${it.value}" },
+                data = payload.entries.joinToString("\n") { (key, value) ->
+                    "$key: ${if (key.isSensitivePushKey()) "<redacted>" else value}"
+                },
             )
             if (highPriority) {
                 fetchPushForegroundServiceManager.stop()
@@ -55,4 +57,10 @@ class DefaultChinaPushIncomingHandler(
         }
         return handled
     }
+}
+
+private fun String.isSensitivePushKey(): Boolean {
+    return equals("cs", ignoreCase = true) ||
+        equals("client_secret", ignoreCase = true) ||
+        equals("clientSecret", ignoreCase = true)
 }

@@ -61,4 +61,8 @@ dependencies {
     implementation(projects.libraries.pushstore.api)
     implementation(projects.libraries.pushproviders.api)
     implementation(projects.libraries.sessionStorage.api)
+
+    testCommonDependencies(libs)
+    testImplementation(projects.libraries.matrix.test)
+    testImplementation(projects.libraries.push.test)
 }

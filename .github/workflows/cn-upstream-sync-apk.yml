@@ -98,6 +98,11 @@ jobs:
           java -version
           ./gradlew --version
 
+      - name: Run China Push contract tests
+        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch' || steps.merge.outputs.changed == 'true'
+        run: |
+          ./gradlew :libraries:pushproviders:chinapush:testDebugUnitTest -PallWarningsAsErrors=true $CI_GRADLE_ARG_PROPERTIES
+
       - name: Build installable GPlay debug APK
         if: github.event_name == 'push' || github.event_name == 'workflow_dispatch' || steps.merge.outputs.changed == 'true'
         run: |
