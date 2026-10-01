@@ -8,7 +8,7 @@ package io.element.android.libraries.pushproviders.chinapush
 
 import org.json.JSONObject
 
-internal fun String?.toChinaPushPayloadMap(): Map<String, String?> {
+fun String?.toChinaPushPayloadMap(): Map<String, String?> {
     if (isNullOrBlank()) return emptyMap()
     return runCatching {
         val json = JSONObject(this)

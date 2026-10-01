@@ -292,6 +292,13 @@ dependencies {
     if (ModulesConfig.pushProvidersConfig.includeChinaPush) {
         implementation(projects.libraries.pushproviders.chinapush)
     }
+    val includeChinaPushXiaomi = providers.gradleProperty("chinapush.xiaomi.enabled")
+        .orElse(providers.environmentVariable("CHINA_PUSH_XIAOMI_ENABLED"))
+        .map(String::toBoolean)
+        .getOrElse(false)
+    if (ModulesConfig.pushProvidersConfig.includeChinaPush && includeChinaPushXiaomi) {
+        implementation(project(":libraries:pushproviders:chinapush-xiaomi"))
+    }
 
     // Google Play Services fused location backend. Discovered at runtime via ServiceLoader by the
     // location feature.
