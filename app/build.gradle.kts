@@ -342,6 +342,31 @@ licensee {
     allowUrl("https://asm.ow2.io/license.html")
     allowUrl("https://www.gnu.org/licenses/agpl-3.0.txt")
     allowUrl("https://github.com/mhssn95/compose-color-picker/blob/main/LICENSE")
+
+    // Huawei/Honor Push SDK artifacts are distributed from the vendors'
+    // official Maven repositories, but their POM metadata does not declare
+    // licenses. Keep these pinned to exact reviewed coordinates so SDK
+    // upgrades must pass license review again.
+    allowDependency("com.hihonor.mcs", "push", "10.0.31.302")
+    allowDependency("com.huawei.agconnect", "agconnect-core", "1.9.1.303")
+    allowDependency("com.huawei.android.hms", "security-base", "1.3.0.301")
+    allowDependency("com.huawei.android.hms", "security-encrypt", "1.3.0.301")
+    allowDependency("com.huawei.android.hms", "security-ssl", "1.2.1.304")
+    allowDependency("com.huawei.hmf", "tasks", "1.5.2.301")
+    allowDependency("com.huawei.hms", "availableupdate", "6.13.0.301")
+    allowDependency("com.huawei.hms", "base", "6.13.0.301")
+    allowDependency("com.huawei.hms", "baselegacyapi", "6.13.0.301")
+    allowDependency("com.huawei.hms", "device", "6.13.0.301")
+    allowDependency("com.huawei.hms", "hatool", "6.13.0.301")
+    allowDependency("com.huawei.hms", "log", "6.13.0.301")
+    allowDependency("com.huawei.hms", "network-common", "8.0.1.304")
+    allowDependency("com.huawei.hms", "network-framework-compat", "8.0.1.304")
+    allowDependency("com.huawei.hms", "network-grs", "8.0.1.304")
+    allowDependency("com.huawei.hms", "opendevice", "6.13.0.300")
+    allowDependency("com.huawei.hms", "push", "6.13.0.300")
+    allowDependency("com.huawei.hms", "stats", "6.13.0.301")
+    allowDependency("com.huawei.hms", "ui", "6.13.0.301")
+
     ignoreDependencies("com.github.matrix-org", "matrix-analytics-events")
     // Ignore dependency that are not third-party licenses to us.
     ignoreDependencies(groupId = "io.element.android")
