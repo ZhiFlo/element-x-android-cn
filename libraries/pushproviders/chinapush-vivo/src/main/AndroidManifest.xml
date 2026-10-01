@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <application>
+        <meta-data
+            android:name="api_key"
+            android:value="${chinaPushVivoApiKey}" />
+        <meta-data
+            android:name="app_id"
+            android:value="${chinaPushVivoAppId}" />
+
+        <receiver
+            android:name=".ElementVivoPushReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.vivo.pushclient.action.RECEIVE" />
+            </intent-filter>
+        </receiver>
+    </application>
+</manifest>

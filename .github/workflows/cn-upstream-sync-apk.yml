@@ -103,15 +103,26 @@ jobs:
         run: |
           ./gradlew assembleGplayDebug -PallWarningsAsErrors=true $CI_GRADLE_ARG_PROPERTIES
 
-      - name: Verify Xiaomi vendor adapter
+      - name: Verify China vendor adapters
         if: github.ref_name == 'feature/china-push-vendor-adapters'
         run: |
+          mkdir -p "$RUNNER_TEMP/china-vendor-sdk"
+          curl -fL https://raw.githubusercontent.com/wxpusher/wxpusher-app/master/androidApp/libs/oppo_com.heytap.msp_V3.5.3.aar \
+            -o "$RUNNER_TEMP/china-vendor-sdk/oppo.aar"
+          curl -fL https://raw.githubusercontent.com/wxpusher/wxpusher-app/master/androidApp/libs/vpush_clientSDK_v4.0.6.0_506.aar \
+            -o "$RUNNER_TEMP/china-vendor-sdk/vivo.aar"
           ./gradlew \
             :libraries:pushproviders:chinapush-xiaomi:compileDebugKotlin \
+            :libraries:pushproviders:chinapush-oppo:compileDebugKotlin \
+            :libraries:pushproviders:chinapush-vivo:compileDebugKotlin \
             :app:compileGplayDebugKotlin \
             :app:processGplayDebugMainManifest \
             -Pchinapush.xiaomi.enabled=true \
             -Pchinapush.xiaomi.mavenCoordinate=io.github.hebeiliang.mipush:Push:2.0.0 \
+            -Pchinapush.oppo.enabled=true \
+            -Pchinapush.oppo.aar="$RUNNER_TEMP/china-vendor-sdk/oppo.aar" \
+            -Pchinapush.vivo.enabled=true \
+            -Pchinapush.vivo.aar="$RUNNER_TEMP/china-vendor-sdk/vivo.aar" \
             -PallWarningsAsErrors=true \
             $CI_GRADLE_ARG_PROPERTIES
 
