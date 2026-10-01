@@ -30,7 +30,7 @@ class OppoPushStartupHook(
 
         val context = activity.applicationContext
         runCatching {
-            HeytapPushManager.init(context, true)
+            HeytapPushManager.init(context, false)
             if (!HeytapPushManager.isSupportPush(context)) return
 
             HeytapPushManager.getRegisterID()
