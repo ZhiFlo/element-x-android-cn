@@ -111,7 +111,7 @@ jobs:
             :app:compileGplayDebugKotlin \
             :app:processGplayDebugMainManifest \
             -Pchinapush.xiaomi.enabled=true \
-            -Pchinapush.xiaomi.mavenCoordinate=io.github.hebeiliang:mipush:Push:2.0.0 \
+            -Pchinapush.xiaomi.mavenCoordinate=io.github.hebeiliang.mipush:Push:2.0.0 \
             -PallWarningsAsErrors=true \
             $CI_GRADLE_ARG_PROPERTIES
 
