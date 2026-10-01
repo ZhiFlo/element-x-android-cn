@@ -8,6 +8,11 @@
             android:name="app_id"
             android:value="${chinaPushVivoAppId}" />
 
+        <service
+            android:name="com.vivo.push.sdk.service.CommandClientService"
+            android:exported="true"
+            android:permission="com.push.permission.UPSTAGESERVICE" />
+
         <receiver
             android:name=".ElementVivoPushReceiver"
             android:exported="false">
