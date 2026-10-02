@@ -93,7 +93,7 @@ jna = "net.java.dev.jna:jna:5.19.1"
 # AndroidX
 androidx_core = { module = "androidx.core:core", version.ref = "core" }
 androidx_corektx = { module = "androidx.core:core-ktx", version.ref = "core" }
-androidx_annotationjvm = "androidx.annotation:annotation-jvm:1.10.0"
+androidx_annotationjvm = "androidx.annotation:annotation-jvm:1.11.0"
 androidx_datastore_preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore" }
 androidx_datastore_datastore = { module = "androidx.datastore:datastore", version.ref = "datastore" }
 androidx_exifinterface = "androidx.exifinterface:exifinterface:1.4.2"
@@ -171,7 +171,7 @@ test_mockk = "io.mockk:mockk:1.14.11"
 test_konsist = "com.github.jmartinesp:konsist:0.18.0"
 test_turbine = "app.cash.turbine:turbine:1.2.1"
 test_truth = "com.google.truth:truth:1.4.5"
-test_parameter_injector = "com.google.testparameterinjector:test-parameter-injector:1.22"
+test_parameter_injector = "com.google.testparameterinjector:test-parameter-injector:1.23"
 test_robolectric = "org.robolectric:robolectric:4.16.1"
 test_appyx_junit = { module = "com.bumble.appyx:testing-junit4", version.ref = "appyx" }
 test_composable_preview_scanner = "io.github.sergio-sastre.ComposablePreviewScanner:android:0.9.3"
