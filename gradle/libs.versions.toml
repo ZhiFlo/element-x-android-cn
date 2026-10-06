@@ -5,15 +5,14 @@
 # Project
 android_gradle_plugin = "9.3.2"
 # When updating this, please also update the version in the file ./idea/kotlinc.xml
-kotlin = "2.4.10"
+kotlin = "2.4.20"
 kotlinpoet = "2.4.0"
-ksp = "2.3.11"
+ksp = "2.3.12"
 firebaseAppDistribution = "5.3.0"
 
 # AndroidX
 core = "1.18.0"
 datastore = "1.2.1"
-constraintlayout = "2.2.2"
 constraintlayout_compose = "1.1.2"
 lifecycle = "2.11.0"
 activity = "1.13.0"
@@ -97,12 +96,11 @@ androidx_annotationjvm = "androidx.annotation:annotation-jvm:1.11.0"
 androidx_datastore_preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore" }
 androidx_datastore_datastore = { module = "androidx.datastore:datastore", version.ref = "datastore" }
 androidx_exifinterface = "androidx.exifinterface:exifinterface:1.4.2"
-androidx_constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
 androidx_constraintlayout_compose = { module = "androidx.constraintlayout:constraintlayout-compose", version.ref = "constraintlayout_compose" }
 androidx_camera_lifecycle = { module = "androidx.camera:camera-lifecycle", version.ref = "camera" }
 androidx_camera_view = { module = "androidx.camera:camera-view", version.ref = "camera" }
 androidx_camera_camera2 = { module = "androidx.camera:camera-camera2", version.ref = "camera" }
-androidx_javascriptengine = "androidx.javascriptengine:javascriptengine:1.1.0"
+androidx_javascriptengine = "androidx.javascriptengine:javascriptengine:1.1.1"
 androidx_workmanager_runtime = { module = "androidx.work:work-runtime-ktx", version.ref = "work" }
 
 androidx_recyclerview = "androidx.recyclerview:recyclerview:1.4.0"
@@ -171,7 +169,7 @@ test_mockk = "io.mockk:mockk:1.14.11"
 test_konsist = "com.github.jmartinesp:konsist:0.18.0"
 test_turbine = "app.cash.turbine:turbine:1.2.1"
 test_truth = "com.google.truth:truth:1.4.5"
-test_parameter_injector = "com.google.testparameterinjector:test-parameter-injector:1.23"
+test_parameter_injector = "com.google.testparameterinjector:test-parameter-injector:1.24"
 test_robolectric = "org.robolectric:robolectric:4.17"
 test_appyx_junit = { module = "com.bumble.appyx:testing-junit4", version.ref = "appyx" }
 test_composable_preview_scanner = "io.github.sergio-sastre.ComposablePreviewScanner:android:0.9.3"
