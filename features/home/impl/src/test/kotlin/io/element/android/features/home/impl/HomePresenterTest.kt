@@ -6,6 +6,8 @@
  * Please see LICENSE files in the repository root for full details.
  */
 
+@file:OptIn(ExperimentalCoroutinesApi::class)
+
 package io.element.android.features.home.impl
 
 import com.google.common.truth.Truth.assertThat
@@ -39,8 +41,12 @@ import io.element.android.tests.testutils.WarmUpRule
 import io.element.android.tests.testutils.lambda.lambdaRecorder
 import io.element.android.tests.testutils.lambda.value
 import io.element.android.tests.testutils.test
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.advanceTimeBy
+import kotlinx.coroutines.test.runCurrent
 import kotlinx.coroutines.test.runTest
 import org.junit.Rule
 import org.junit.Test
@@ -119,12 +125,16 @@ class HomePresenterTest {
         }
     }
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun `present - total unread count is updated on sync heartbeat`() = runTest {
         var unreadCount = 0L
         val syncService = FakeSyncService()
         val presenter = createHomePresenter(
-            client = FakeMatrixClient(totalUnreadCountResult = { Result.success(unreadCount) }),
+            client = FakeMatrixClient(
+                syncService = syncService,
+                totalUnreadCountResult = { Result.success(unreadCount) },
+            ),
             syncService = syncService,
         )
         presenter.test {
@@ -136,11 +146,15 @@ class HomePresenterTest {
         }
     }
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun `present - total unread count defaults to 0 when the SDK call fails`() = runTest {
         val syncService = FakeSyncService()
         val presenter = createHomePresenter(
-            client = FakeMatrixClient(totalUnreadCountResult = { Result.failure(AN_EXCEPTION) }),
+            client = FakeMatrixClient(
+                syncService = syncService,
+                totalUnreadCountResult = { Result.failure(AN_EXCEPTION) },
+            ),
             syncService = syncService,
         )
         presenter.test {
@@ -280,6 +294,25 @@ class HomePresenterTest {
         }
     }
 
+    @OptIn(ExperimentalCoroutinesApi::class)
+    @Test
+    fun `present - dismissing the swipe avatar announcement`() = runTest {
+        val onAnnouncementDismissedResult = lambdaRecorder<Announcement, Unit> { }
+        val presenter = createHomePresenter(
+            announcementService = FakeAnnouncementService(
+                onAnnouncementDismissedResult = onAnnouncementDismissedResult,
+            ),
+            appCoroutineScope = this,
+        )
+        presenter.test {
+            val state = expectMostRecentItem()
+            state.eventSink(HomeEvent.DismissSwipeAvatarAnnouncement)
+            runCurrent()
+            onAnnouncementDismissedResult.assertions().isCalledOnce()
+                .with(value(Announcement.SwipeAvatarToSwitchAccount))
+        }
+    }
+
     @Test
     fun `present - total unread count is loaded in the initial state`() = runTest {
         val presenter = createHomePresenter(
@@ -291,7 +324,7 @@ class HomePresenterTest {
     }
 }
 
-internal fun createHomePresenter(
+internal fun TestScope.createHomePresenter(
     client: MatrixClient = FakeMatrixClient(),
     syncService: SyncService = FakeSyncService(),
     snackbarDispatcher: SnackbarDispatcher = SnackbarDispatcher(),
@@ -301,6 +334,7 @@ internal fun createHomePresenter(
     sessionStore: SessionStore = InMemorySessionStore(),
     announcementService: AnnouncementService = FakeAnnouncementService(),
     featureFlagService: FeatureFlagService = FakeFeatureFlagService(),
+    appCoroutineScope: CoroutineScope = backgroundScope,
 ) = HomePresenter(
     client = client,
     syncService = syncService,
@@ -312,4 +346,5 @@ internal fun createHomePresenter(
     sessionStore = sessionStore,
     announcementService = announcementService,
     featureFlagService = featureFlagService,
+    appCoroutineScope = appCoroutineScope,
 )
