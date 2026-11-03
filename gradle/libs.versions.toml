@@ -182,7 +182,7 @@ test_detekt_test = { module = "io.gitlab.arturbosch.detekt:detekt-test", version
 # https://github.com/matrix-org/matrix-rust-components-kotlin/commits/main/sdk/sdk-android/src/main/kotlin/org/matrix/rustcomponents/sdk/matrix_sdk_ffi.kt
 # All new features should not be implemented in the pull request that upgrades the version, developers should
 # only fix API breaks and may add some TODOs.
-matrix_sdk = "org.matrix.rustcomponents:sdk-android:26.10.28-nightly"
+matrix_sdk = "org.matrix.rustcomponents:sdk-android:26.11.01-nightly"
 rustls_platform_verifier = "org.rustls:rustls-platform-verifier:0.2.0"
 
 # Others
@@ -222,7 +222,7 @@ google_guava = "com.google.guava:guava:33.7.2-android"
 color_picker = "io.mhssn:colorpicker:1.0.0"
 
 # Analytics
-posthog = "com.posthog:posthog-android:3.60.7"
+posthog = "com.posthog:posthog-android:3.72.8"
 sentry = "io.sentry:sentry-android:8.61.1"
 # main branch can be tested replacing the version with main-SNAPSHOT
 matrix_analytics_events = "com.github.matrix-org:matrix-analytics-events:0.38.0"
