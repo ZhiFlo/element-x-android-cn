@@ -182,7 +182,7 @@ test_detekt_test = { module = "io.gitlab.arturbosch.detekt:detekt-test", version
 # https://github.com/matrix-org/matrix-rust-components-kotlin/commits/main/sdk/sdk-android/src/main/kotlin/org/matrix/rustcomponents/sdk/matrix_sdk_ffi.kt
 # All new features should not be implemented in the pull request that upgrades the version, developers should
 # only fix API breaks and may add some TODOs.
-matrix_sdk = "org.matrix.rustcomponents:sdk-android:26.11.01-nightly"
+matrix_sdk = "org.matrix.rustcomponents:sdk-android:26.11.05"
 rustls_platform_verifier = "org.rustls:rustls-platform-verifier:0.2.0"
 
 # Others
@@ -235,7 +235,7 @@ sigpwned_emoji4j = "com.sigpwned:emoji4j-core:16.0.0"
 metro_runtime = { module = "dev.zacsweers.metro:runtime", version.ref = "metro" }
 
 # Element Call
-element_call_embedded = "io.element.android:element-call-embedded:0.28.1"
+element_call_embedded = "io.element.android:element-call-embedded:0.28.2"
 # The native MatrixRTC call component. Versions come from the BOM, so every artifact moves together.
 element_call_bom = { module = "io.element.android:element-call-bom", version.ref = "element_call" }
 element_call_api = { module = "io.element.android:element-call-api" }
