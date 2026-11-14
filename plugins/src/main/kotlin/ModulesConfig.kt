@@ -17,7 +17,7 @@ object ModulesConfig {
         includeChinaPush = BuildTimeConfig.PUSH_CONFIG_INCLUDE_CHINA_PUSH,
     )
 
-    val analyticsConfig: AnalyticsConfig = if (isEnterpriseBuild) {
+    fun analyticsConfig(isEnterpriseBuild: Boolean): AnalyticsConfig = if (isEnterpriseBuild) {
         // Is Posthog configuration available?
         val withPosthog = BuildTimeConfig.SERVICES_POSTHOG_APIKEY.isNullOrEmpty().not() &&
             BuildTimeConfig.SERVICES_POSTHOG_HOST.isNullOrEmpty().not()
