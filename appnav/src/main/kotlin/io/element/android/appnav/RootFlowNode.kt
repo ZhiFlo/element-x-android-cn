@@ -379,7 +379,12 @@ class RootFlowNode(
                     is NavTarget.SplashScreen,
                     is NavTarget.LoggedInFlow,
                     is NavTarget.NotLoggedInFlow -> backstackFader
-                    else -> backstackSlider
+                    is NavTarget.AccountSelect,
+                    NavTarget.SignedOutSessions,
+                    NavTarget.BugReport,
+                    is NavTarget.IncomingShare,
+                    is NavTarget.OtherAccountIncomingVerificationRequest,
+                    is NavTarget.OtherAccountSessionVerification -> backstackSlider
                 }
             }
             BackstackView(transitionHandler = transitionHandler)
@@ -752,16 +757,15 @@ class RootFlowNode(
 
     private suspend fun navigateTo(deeplinkData: DeeplinkData) {
         Timber.d("Navigating to $deeplinkData")
-        attachSession(deeplinkData.sessionId).let { loggedInFlowNode ->
-            when (deeplinkData) {
-                is DeeplinkData.Root -> Unit // The room list will always be shown, observing FtueState
-                is DeeplinkData.Room -> {
-                    loggedInFlowNode.attachRoom(
-                        roomIdOrAlias = deeplinkData.roomId.toRoomIdOrAlias(),
-                        initialElement = RoomNavigationTarget.Root(eventId = deeplinkData.threadId?.asEventId() ?: deeplinkData.eventId),
-                        clearBackstack = true,
-                    ).maybeAttachThread(deeplinkData.threadId, deeplinkData.eventId)
-                }
+        val loggedInFlowNode = attachSession(deeplinkData.sessionId)
+        when (deeplinkData) {
+            is DeeplinkData.Root -> Unit // The room list will always be shown, observing FtueState
+            is DeeplinkData.Room -> {
+                loggedInFlowNode.attachRoom(
+                    roomIdOrAlias = deeplinkData.roomId.toRoomIdOrAlias(),
+                    initialElement = RoomNavigationTarget.Root(eventId = deeplinkData.threadId?.asEventId() ?: deeplinkData.eventId),
+                    clearBackstack = true,
+                ).maybeAttachThread(deeplinkData.threadId, deeplinkData.eventId)
             }
         }
     }
